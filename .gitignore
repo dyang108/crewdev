@@ -10,12 +10,6 @@ env/
 # Log files
 *.log
 
-# Test files (if they're temporary)
-test_*.py
-demo_*.py
-verify_*.py
-example_*.py
-
 # IDE and editor files
 .vscode/
 .idea/
