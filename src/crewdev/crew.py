@@ -4,6 +4,16 @@ from crewai.agents.agent_builder.base_agent import BaseAgent
 from typing import List
 import os
 from langchain_ollama import OllamaLLM
+
+# Import all our custom tools
+from crewdev.tools import (
+    # File tools
+    ReadFileTool, WriteFileTool, ListDirectoryTool, CreateDirectoryTool, DeleteFileTool, FileExistsTool,
+    # Execution tools
+    RunCommandTool, StartServerTool, StopServerTool, ListServersTool, CheckPortTool, InstallPackageTool, RunPythonScriptTool,
+    # Dev tools
+    CreateProjectTool, CreateRequirementsTool, CreatePackageJsonTool, CreateDockerfileTool, CreateDockerComposeTool, CreateGitignoreTool
+)
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
@@ -47,7 +57,17 @@ class SoftwareEngineeringTeam():
             allow_delegation=False,
             step_callback=lambda x: print(f"🤔 Staff Engineer thinking: {x}"),
             memory=True,
-            llm=gptoss
+            llm=gptoss,
+            tools=[
+                # File management tools
+                ReadFileTool(), WriteFileTool(), ListDirectoryTool(), CreateDirectoryTool(),
+                # Project creation tools
+                CreateProjectTool(), CreateRequirementsTool(), CreateGitignoreTool(),
+                # Execution tools
+                RunCommandTool(), CheckPortTool(),
+                # Development tools
+                CreateDockerfileTool(), CreateDockerComposeTool()
+            ]
         )
 
     @agent
@@ -58,7 +78,17 @@ class SoftwareEngineeringTeam():
             allow_delegation=False,
             step_callback=lambda x: print(f"🎨 Frontend Engineer thinking: {x}"),
             memory=True,
-            llm=gptoss
+            llm=gptoss,
+            tools=[
+                # File management tools
+                ReadFileTool(), WriteFileTool(), ListDirectoryTool(), CreateDirectoryTool(),
+                # Frontend-specific tools
+                CreatePackageJsonTool(), CreateGitignoreTool(),
+                # Execution tools
+                RunCommandTool(), StartServerTool(), StopServerTool(), ListServersTool(), CheckPortTool(),
+                # Package management
+                InstallPackageTool()
+            ]
         )
 
     @agent
@@ -69,7 +99,19 @@ class SoftwareEngineeringTeam():
             allow_delegation=False,
             step_callback=lambda x: print(f"⚙️ Backend Engineer thinking: {x}"),
             memory=True,
-            llm=gptoss
+            llm=gptoss,
+            tools=[
+                # File management tools
+                ReadFileTool(), WriteFileTool(), ListDirectoryTool(), CreateDirectoryTool(),
+                # Backend-specific tools
+                CreateRequirementsTool(), CreateGitignoreTool(),
+                # Execution tools
+                RunCommandTool(), StartServerTool(), StopServerTool(), ListServersTool(), CheckPortTool(),
+                # Python-specific tools
+                RunPythonScriptTool(), InstallPackageTool(),
+                # Development tools
+                CreateDockerfileTool()
+            ]
         )
 
     @agent
@@ -80,7 +122,17 @@ class SoftwareEngineeringTeam():
             allow_delegation=False,
             step_callback=lambda x: print(f"🚀 DevOps Engineer thinking: {x}"),
             memory=True,
-            llm=gptoss
+            llm=gptoss,
+            tools=[
+                # File management tools
+                ReadFileTool(), WriteFileTool(), ListDirectoryTool(), CreateDirectoryTool(),
+                # DevOps-specific tools
+                CreateDockerfileTool(), CreateDockerComposeTool(), CreateGitignoreTool(),
+                # Execution tools
+                RunCommandTool(), StartServerTool(), StopServerTool(), ListServersTool(), CheckPortTool(),
+                # Package management
+                InstallPackageTool()
+            ]
         )
 
     @agent
@@ -91,7 +143,15 @@ class SoftwareEngineeringTeam():
             allow_delegation=False,
             step_callback=lambda x: print(f"🤨 Technical Skeptic thinking: {x}"),
             memory=True,
-            llm=gptoss
+            llm=gptoss,
+            tools=[
+                # File management tools for code review
+                ReadFileTool(), ListDirectoryTool(), FileExistsTool(),
+                # Execution tools for testing
+                RunCommandTool(), RunPythonScriptTool(),
+                # Development tools for analysis
+                CheckPortTool()
+            ]
         )
 
     @agent
@@ -102,7 +162,15 @@ class SoftwareEngineeringTeam():
             allow_delegation=False,
             step_callback=lambda x: print(f"📊 Product Manager thinking: {x}"),
             memory=True,
-            llm=gptoss
+            llm=gptoss,
+            tools=[
+                # File management tools for documentation
+                ReadFileTool(), WriteFileTool(), ListDirectoryTool(), CreateDirectoryTool(),
+                # Project creation tools
+                CreateProjectTool(), CreateGitignoreTool(),
+                # Basic execution tools
+                RunCommandTool()
+            ]
         )
 
     # To learn more about structured task outputs,

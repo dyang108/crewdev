@@ -52,6 +52,38 @@ The team follows a comprehensive software development workflow:
 4. **Code Review** → Staff Engineer reviews all implementations
 5. **Integration** → Product Manager ensures end-to-end functionality
 
+## 🛠️ Tool Capabilities
+
+Your software engineering team now has access to powerful tools for local development:
+
+### 📁 File System Tools
+- **Read/Write Files**: Create and modify code files locally
+- **Directory Management**: Create project structures and organize code
+- **File Operations**: List, check existence, and delete files
+
+### ⚡ Execution & Server Management
+- **Command Execution**: Run shell commands and scripts
+- **Server Management**: Start, stop, and monitor development servers
+- **Port Management**: Check port availability and avoid conflicts
+- **Package Installation**: Install Python and Node.js dependencies
+
+### 🏗️ Development Environment Tools
+- **Project Creation**: Set up Python, Node.js, and React projects
+- **Dependency Management**: Generate requirements.txt and package.json
+- **Containerization**: Create Dockerfiles and docker-compose.yml
+- **Git Configuration**: Generate appropriate .gitignore files
+
+### 🎯 Role-Specific Tools
+Each team member has access to tools relevant to their role:
+- **Staff Engineer**: Architecture and project setup tools
+- **Frontend Engineer**: React/Node.js development tools
+- **Backend Engineer**: Python/API development tools
+- **DevOps Engineer**: Infrastructure and deployment tools
+- **Technical Skeptic**: Code review and testing tools
+- **Product Manager**: Documentation and project management tools
+
+For detailed tool documentation, see [TOOLS_GUIDE.md](TOOLS_GUIDE.md).
+
 ## Getting Started
 
 ### Prerequisites
@@ -66,11 +98,22 @@ ollama pull gpt-oss:20b
 pip install -e .
 ```
 
+3. Test the tools (optional):
+```bash
+python test_tools.py
+```
+
 ### Running the Team
 
 ```bash
 # Run the complete software engineering workflow
 python -m src.crewdev.main
+
+# Run with tools example (creates a complete application)
+python example_with_tools.py
+
+# Show tool capabilities
+python example_with_tools.py tools
 
 # Train the team (for optimization)
 python -m src.crewdev.main train <iterations> <filename>
