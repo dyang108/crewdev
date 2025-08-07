@@ -32,6 +32,14 @@ from .dev_tools import (
 # Legacy custom tool
 from .custom_tool import MyCustomTool
 
+# Dynamic task management tools
+from .dynamic_task_tool import (
+    DynamicTaskTool,
+    TaskCompletionTool,
+    BugReportTool,
+    FeatureRequestTool
+)
+
 # Export all tools
 __all__ = [
     # File tools
@@ -58,6 +66,12 @@ __all__ = [
     "CreateDockerfileTool",
     "CreateDockerComposeTool",
     "CreateGitignoreTool",
+    
+    # Dynamic task tools
+    "DynamicTaskTool",
+    "TaskCompletionTool",
+    "BugReportTool",
+    "FeatureRequestTool",
     
     # Legacy
     "MyCustomTool"

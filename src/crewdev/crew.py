@@ -12,8 +12,13 @@ from crewdev.tools import (
     # Execution tools
     RunCommandTool, StartServerTool, StopServerTool, ListServersTool, CheckPortTool, InstallPackageTool, RunPythonScriptTool,
     # Dev tools
-    CreateProjectTool, CreateRequirementsTool, CreatePackageJsonTool, CreateDockerfileTool, CreateDockerComposeTool, CreateGitignoreTool
+    CreateProjectTool, CreateRequirementsTool, CreatePackageJsonTool, CreateDockerfileTool, CreateDockerComposeTool, CreateGitignoreTool,
+    # Dynamic task tools
+    DynamicTaskTool, TaskCompletionTool, BugReportTool, FeatureRequestTool
 )
+
+# Import dynamic task manager
+from crewdev.dynamic_task_manager import DynamicTaskManager
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
@@ -38,10 +43,21 @@ gptoss = OllamaLLM(
 
 @CrewBase
 class SoftwareEngineeringTeam():
-    """Software Engineering Team Crew"""
+    """Software Engineering Team Crew with Dynamic Task Assignment"""
 
     agents: List[BaseAgent]
     tasks: List[Task]
+    
+    def __init__(self):
+        super().__init__()
+        # Initialize dynamic task manager
+        self.task_manager = DynamicTaskManager()
+        
+        # Create dynamic task tools
+        self.dynamic_task_tool = DynamicTaskTool(self.task_manager)
+        self.task_completion_tool = TaskCompletionTool(self.task_manager)
+        self.bug_report_tool = BugReportTool(self.task_manager)
+        self.feature_request_tool = FeatureRequestTool(self.task_manager)
 
     # Learn more about YAML configuration files here:
     # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
@@ -66,7 +82,9 @@ class SoftwareEngineeringTeam():
                 # Execution tools
                 RunCommandTool(), CheckPortTool(),
                 # Development tools
-                CreateDockerfileTool(), CreateDockerComposeTool()
+                CreateDockerfileTool(), CreateDockerComposeTool(),
+                # Dynamic task tools
+                self.dynamic_task_tool, self.task_completion_tool, self.bug_report_tool, self.feature_request_tool
             ]
         )
 
@@ -87,7 +105,9 @@ class SoftwareEngineeringTeam():
                 # Execution tools
                 RunCommandTool(), StartServerTool(), StopServerTool(), ListServersTool(), CheckPortTool(),
                 # Package management
-                InstallPackageTool()
+                InstallPackageTool(),
+                # Dynamic task tools
+                self.dynamic_task_tool, self.task_completion_tool, self.bug_report_tool, self.feature_request_tool
             ]
         )
 
@@ -110,7 +130,9 @@ class SoftwareEngineeringTeam():
                 # Python-specific tools
                 RunPythonScriptTool(), InstallPackageTool(),
                 # Development tools
-                CreateDockerfileTool()
+                CreateDockerfileTool(),
+                # Dynamic task tools
+                self.dynamic_task_tool, self.task_completion_tool, self.bug_report_tool, self.feature_request_tool
             ]
         )
 
@@ -131,7 +153,9 @@ class SoftwareEngineeringTeam():
                 # Execution tools
                 RunCommandTool(), StartServerTool(), StopServerTool(), ListServersTool(), CheckPortTool(),
                 # Package management
-                InstallPackageTool()
+                InstallPackageTool(),
+                # Dynamic task tools
+                self.dynamic_task_tool, self.task_completion_tool, self.bug_report_tool, self.feature_request_tool
             ]
         )
 
@@ -150,7 +174,9 @@ class SoftwareEngineeringTeam():
                 # Execution tools for testing
                 RunCommandTool(), RunPythonScriptTool(),
                 # Development tools for analysis
-                CheckPortTool()
+                CheckPortTool(),
+                # Dynamic task tools
+                self.dynamic_task_tool, self.task_completion_tool, self.bug_report_tool, self.feature_request_tool
             ]
         )
 
@@ -169,7 +195,9 @@ class SoftwareEngineeringTeam():
                 # Project creation tools
                 CreateProjectTool(), CreateGitignoreTool(),
                 # Basic execution tools
-                RunCommandTool()
+                RunCommandTool(),
+                # Dynamic task tools
+                self.dynamic_task_tool, self.task_completion_tool, self.bug_report_tool, self.feature_request_tool
             ]
         )
 

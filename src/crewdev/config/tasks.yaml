@@ -1,3 +1,6 @@
+# Dynamic Task Templates - These can be assigned based on current project needs
+
+# Initial Project Tasks
 market_research_task:
   description: >
     Conduct comprehensive market research for the {project_name} project.
@@ -11,9 +14,10 @@ market_research_task:
     - Key requirements and success metrics
   agent: product_manager
 
+# Dynamic Technical Tasks
 technical_architecture_task:
   description: >
-    Based on the market research, design the technical architecture for {project_name}.
+    Based on the market research and current project needs, design the technical architecture for {project_name}.
     Define system components, data models, API specifications, and technology stack.
     Consider scalability, security, and maintainability requirements.
   expected_output: >
@@ -25,9 +29,10 @@ technical_architecture_task:
     - Security considerations
   agent: staff_engineer
 
+# Dynamic Implementation Tasks
 frontend_implementation_task:
   description: >
-    Implement the frontend components for {project_name} based on the technical architecture.
+    Implement the frontend components for {project_name} based on the technical architecture and current requirements.
     Focus on user experience, responsive design, and modern web standards.
     Ensure accessibility and performance optimization.
   expected_output: >
@@ -41,7 +46,7 @@ frontend_implementation_task:
 
 backend_implementation_task:
   description: >
-    Implement the backend services and APIs for {project_name} based on the technical architecture.
+    Implement the backend services and APIs for {project_name} based on the technical architecture and current requirements.
     Focus on performance, security, and scalability. Implement proper error handling and logging.
   expected_output: >
     Backend implementation including:
@@ -52,6 +57,7 @@ backend_implementation_task:
     - Unit and integration tests
   agent: senior_engineer_backend
 
+# Dynamic DevOps Tasks
 devops_setup_task:
   description: >
     Set up CI/CD pipelines, containerization, and deployment infrastructure for {project_name}.
@@ -65,6 +71,7 @@ devops_setup_task:
     - Infrastructure as code
   agent: senior_engineer_devops
 
+# Dynamic Review Tasks
 technical_skeptic_review_task:
   description: >
     Review all technical decisions, architecture choices, and implementation patterns
@@ -94,6 +101,7 @@ code_review_task:
     - Best practices implementation
   agent: staff_engineer
 
+# Dynamic Integration and Testing Tasks
 final_integration_task:
   description: >
     Integrate all components and perform end-to-end testing. Ensure the system works
@@ -105,4 +113,59 @@ final_integration_task:
     - Security assessment
     - Deployment readiness checklist
     - User acceptance testing results
+  agent: product_manager
+
+# Dynamic Bug Fix Tasks
+bug_fix_task:
+  description: >
+    Investigate and fix the reported bug: {bug_description}
+    Analyze the issue, identify the root cause, and implement a proper fix.
+    Ensure the fix doesn't introduce new issues and follows best practices.
+  expected_output: >
+    Bug fix implementation including:
+    - Root cause analysis
+    - Fix implementation
+    - Test cases to prevent regression
+    - Documentation of the fix
+  agent: staff_engineer
+
+# Dynamic Feature Implementation Tasks
+feature_implementation_task:
+  description: >
+    Implement the requested feature: {feature_description}
+    Follow the technical architecture and coding standards.
+    Ensure proper testing and documentation.
+  expected_output: >
+    Feature implementation including:
+    - Feature code implementation
+    - Unit tests
+    - Integration tests
+    - Documentation
+    - API documentation if applicable
+  agent: staff_engineer
+
+# Dynamic Research Tasks
+technical_research_task:
+  description: >
+    Research the following technical topic: {research_topic}
+    Provide comprehensive analysis, recommendations, and implementation guidance.
+  expected_output: >
+    Technical research report including:
+    - Analysis of available options
+    - Pros and cons of each approach
+    - Recommendations
+    - Implementation guidance
+  agent: staff_engineer
+
+# Dynamic Planning Tasks
+next_steps_planning_task:
+  description: >
+    Based on the current project state and completed work, determine what should happen next.
+    Consider dependencies, priorities, and team capacity.
+  expected_output: >
+    Next steps plan including:
+    - Prioritized task list
+    - Dependencies and blockers
+    - Resource allocation recommendations
+    - Timeline estimates
   agent: product_manager
