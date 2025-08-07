@@ -31,6 +31,9 @@ agents:
   junior_engineer_devops:
     log_prefix: "🚀 [DevOps Engineer]"
     log_level: DEBUG
+  technical_skeptic:
+    log_prefix: "🤨 [Technical Skeptic]"
+    log_level: DEBUG
   product_manager:
     log_prefix: "📊 [Product Manager]"
     log_level: DEBUG
@@ -51,6 +54,9 @@ tasks:
     log_level: DEBUG
   devops_setup_task:
     log_prefix: "🚀 [DevOps Setup]"
+    log_level: DEBUG
+  technical_skeptic_review_task:
+    log_prefix: "🤨 [Technical Skeptic Review]"
     log_level: DEBUG
   code_review_task:
     log_prefix: "🔍 [Code Review]"

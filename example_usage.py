@@ -5,8 +5,18 @@ Example usage of the Software Engineering Team with CrewAI
 This script demonstrates how to use the team for different types of projects.
 """
 
+import os
 from datetime import datetime
 from src.crewdev.crew import SoftwareEngineeringTeam
+
+# Configure Ollama for this script
+# For Ollama with CrewAI, use only OpenAI-compatible environment variables
+os.environ["OPENAI_API_BASE"] = "http://localhost:11434/v1"
+os.environ["OPENAI_API_KEY"] = "ollama"  # Dummy key for Ollama
+# Remove OLLAMA_BASE_URL - CrewAI uses Langchain which expects OpenAI-style APIs
+os.environ["LLM_MODEL"] = "gpt-oss:20b"
+os.environ["DEFAULT_MODEL"] = "gpt-oss:20b"
+os.environ["MODEL_NAME"] = "gpt-oss:20b"
 
 def run_ecommerce_project():
     """Run the team on an e-commerce project"""

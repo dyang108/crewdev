@@ -33,7 +33,7 @@ def test_llm_configs():
             goal="Test goal",
             backstory="Test backstory",
             verbose=True,
-            llm="ollama/gpt-oss:20b"
+            llm="gpt-oss:20b"
         )
         print("✅ Test 2: Direct LLM specification - SUCCESS")
     except Exception as e:

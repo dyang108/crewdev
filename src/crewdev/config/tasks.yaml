@@ -65,6 +65,22 @@ devops_setup_task:
     - Infrastructure as code
   agent: senior_engineer_devops
 
+technical_skeptic_review_task:
+  description: >
+    Review all technical decisions, architecture choices, and implementation patterns
+    with a critical eye. Challenge assumptions, identify potential technical debt,
+    and suggest improvements for modularity, reusability, and maintainability.
+    Focus on clean code principles and long-term code quality.
+  expected_output: >
+    Technical skeptic review report including:
+    - Critical analysis of architecture decisions
+    - Identification of potential technical debt
+    - Suggestions for better abstractions and modularity
+    - Code quality recommendations
+    - Refactoring opportunities
+    - Alternative design patterns to consider
+  agent: technical_skeptic
+
 code_review_task:
   description: >
     Review all implementations from the senior engineers and provide feedback on code quality,
