@@ -1,0 +1,92 @@
+market_research_task:
+  description: >
+    Conduct comprehensive market research for the {project_name} project.
+    Analyze user needs, competitor landscape, and market opportunities.
+    Identify key user personas and their pain points.
+  expected_output: >
+    A detailed market research report including:
+    - User personas and their needs
+    - Competitor analysis
+    - Market opportunities and challenges
+    - Key requirements and success metrics
+  agent: product_manager
+
+technical_architecture_task:
+  description: >
+    Based on the market research, design the technical architecture for {project_name}.
+    Define system components, data models, API specifications, and technology stack.
+    Consider scalability, security, and maintainability requirements.
+  expected_output: >
+    A comprehensive technical architecture document including:
+    - System architecture diagram
+    - Technology stack recommendations
+    - API specifications
+    - Database schema design
+    - Security considerations
+  agent: staff_engineer
+
+frontend_implementation_task:
+  description: >
+    Implement the frontend components for {project_name} based on the technical architecture.
+    Focus on user experience, responsive design, and modern web standards.
+    Ensure accessibility and performance optimization.
+  expected_output: >
+    Frontend implementation including:
+    - React/TypeScript components
+    - Responsive UI design
+    - State management setup
+    - API integration code
+    - Unit tests for components
+  agent: senior_engineer_frontend
+
+backend_implementation_task:
+  description: >
+    Implement the backend services and APIs for {project_name} based on the technical architecture.
+    Focus on performance, security, and scalability. Implement proper error handling and logging.
+  expected_output: >
+    Backend implementation including:
+    - API endpoints and controllers
+    - Database models and migrations
+    - Authentication and authorization
+    - Business logic implementation
+    - Unit and integration tests
+  agent: senior_engineer_backend
+
+devops_setup_task:
+  description: >
+    Set up CI/CD pipelines, containerization, and deployment infrastructure for {project_name}.
+    Implement monitoring, logging, and operational best practices.
+  expected_output: >
+    DevOps implementation including:
+    - Docker containerization
+    - CI/CD pipeline configuration
+    - Kubernetes deployment manifests
+    - Monitoring and logging setup
+    - Infrastructure as code
+  agent: senior_engineer_devops
+
+code_review_task:
+  description: >
+    Review all implementations from the senior engineers and provide feedback on code quality,
+    architecture alignment, and best practices. Ensure consistency across the codebase.
+  expected_output: >
+    Code review report including:
+    - Code quality assessment
+    - Architecture compliance review
+    - Security and performance recommendations
+    - Refactoring suggestions
+    - Best practices implementation
+  agent: staff_engineer
+
+final_integration_task:
+  description: >
+    Integrate all components and perform end-to-end testing. Ensure the system works
+    as a cohesive unit and meets all requirements from the market research.
+  expected_output: >
+    Integration report including:
+    - End-to-end testing results
+    - Performance benchmarks
+    - Security assessment
+    - Deployment readiness checklist
+    - User acceptance testing results
+  agent: product_manager

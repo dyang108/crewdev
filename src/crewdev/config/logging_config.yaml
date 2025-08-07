@@ -1,0 +1,60 @@
+# Logging configuration for the Software Engineering Team
+logging:
+  level: DEBUG
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  handlers:
+    console:
+      level: INFO
+      formatter: detailed
+    file:
+      level: DEBUG
+      filename: "crew_thought_process.log"
+      formatter: detailed
+      mode: "a"
+
+formatters:
+  detailed:
+    format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+
+# Agent-specific logging
+agents:
+  staff_engineer:
+    log_prefix: "🤔 [Staff Engineer]"
+    log_level: DEBUG
+  junior_engineer_frontend:
+    log_prefix: "🎨 [Frontend Engineer]"
+    log_level: DEBUG
+  junior_engineer_backend:
+    log_prefix: "⚙️ [Backend Engineer]"
+    log_level: DEBUG
+  junior_engineer_devops:
+    log_prefix: "🚀 [DevOps Engineer]"
+    log_level: DEBUG
+  product_manager:
+    log_prefix: "📊 [Product Manager]"
+    log_level: DEBUG
+
+# Task-specific logging
+tasks:
+  market_research_task:
+    log_prefix: "📈 [Market Research]"
+    log_level: DEBUG
+  technical_architecture_task:
+    log_prefix: "🏗️ [Technical Architecture]"
+    log_level: DEBUG
+  frontend_implementation_task:
+    log_prefix: "🎨 [Frontend Implementation]"
+    log_level: DEBUG
+  backend_implementation_task:
+    log_prefix: "⚙️ [Backend Implementation]"
+    log_level: DEBUG
+  devops_setup_task:
+    log_prefix: "🚀 [DevOps Setup]"
+    log_level: DEBUG
+  code_review_task:
+    log_prefix: "🔍 [Code Review]"
+    log_level: DEBUG
+  final_integration_task:
+    log_prefix: "🎯 [Final Integration]"
+    log_level: DEBUG 
