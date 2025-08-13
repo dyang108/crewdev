@@ -8,7 +8,7 @@ from langchain_ollama import OllamaLLM
 # Import all our custom tools
 from crewdev.tools import (
     # File tools
-    ReadFileTool, WriteFileTool, ListDirectoryTool, CreateDirectoryTool, DeleteFileTool, FileExistsTool,
+    ReadFileTool, WriteFileTool, FileWriterTool, ListDirectoryTool, CreateDirectoryTool, DeleteFileTool, FileExistsTool,
     # Execution tools
     RunCommandTool, StartServerTool, StopServerTool, ListServersTool, CheckPortTool, InstallPackageTool, RunPythonScriptTool,
     # Dev tools
@@ -76,7 +76,7 @@ class SoftwareEngineeringTeam():
             llm=gptoss,
             tools=[
                 # File management tools
-                ReadFileTool(), WriteFileTool(), ListDirectoryTool(), CreateDirectoryTool(),
+                ReadFileTool(), WriteFileTool(), FileWriterTool(), ListDirectoryTool(), CreateDirectoryTool(),
                 # Project creation tools
                 CreateProjectTool(), CreateRequirementsTool(), CreateGitignoreTool(),
                 # Execution tools
@@ -99,7 +99,7 @@ class SoftwareEngineeringTeam():
             llm=gptoss,
             tools=[
                 # File management tools
-                ReadFileTool(), WriteFileTool(), ListDirectoryTool(), CreateDirectoryTool(),
+                ReadFileTool(), WriteFileTool(), FileWriterTool(), ListDirectoryTool(), CreateDirectoryTool(),
                 # Frontend-specific tools
                 CreatePackageJsonTool(), CreateGitignoreTool(),
                 # Execution tools
@@ -122,7 +122,7 @@ class SoftwareEngineeringTeam():
             llm=gptoss,
             tools=[
                 # File management tools
-                ReadFileTool(), WriteFileTool(), ListDirectoryTool(), CreateDirectoryTool(),
+                ReadFileTool(), WriteFileTool(), FileWriterTool(), ListDirectoryTool(), CreateDirectoryTool(),
                 # Backend-specific tools
                 CreateRequirementsTool(), CreateGitignoreTool(),
                 # Execution tools
@@ -147,7 +147,7 @@ class SoftwareEngineeringTeam():
             llm=gptoss,
             tools=[
                 # File management tools
-                ReadFileTool(), WriteFileTool(), ListDirectoryTool(), CreateDirectoryTool(),
+                ReadFileTool(), WriteFileTool(), FileWriterTool(), ListDirectoryTool(), CreateDirectoryTool(),
                 # DevOps-specific tools
                 CreateDockerfileTool(), CreateDockerComposeTool(), CreateGitignoreTool(),
                 # Execution tools
@@ -191,7 +191,7 @@ class SoftwareEngineeringTeam():
             llm=gptoss,
             tools=[
                 # File management tools for documentation
-                ReadFileTool(), WriteFileTool(), ListDirectoryTool(), CreateDirectoryTool(),
+                ReadFileTool(), WriteFileTool(), FileWriterTool(), ListDirectoryTool(), CreateDirectoryTool(),
                 # Project creation tools
                 CreateProjectTool(), CreateGitignoreTool(),
                 # Basic execution tools

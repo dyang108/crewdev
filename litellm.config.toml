@@ -1,13 +1,13 @@
 # LiteLLM configuration for Ollama models
 # This tells LiteLLM that these models should be routed to the Ollama provider
 
-[model.codellama:13b]
+[model."codellama:13b"]
 provider = "ollama"
 
 [model.mistral]
 provider = "ollama"
 
-[model.gpt-oss:20b]
+[model."gpt-oss:20b"]
 provider = "ollama"
 
 [model.llama3]
@@ -16,7 +16,9 @@ provider = "ollama"
 [model.phi4]
 provider = "ollama"
 
-[model.gemma3:12b]
+[model."gemma3:12b"]
 provider = "ollama"
 
-# Add any other Ollama models you have installed 
+# Alias with provider prefix, used by some parts of the app
+[model."ollama/gpt-oss:20b"]
+provider = "ollama" 

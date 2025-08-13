@@ -2,6 +2,7 @@
 from .file_tools import (
     ReadFileTool,
     WriteFileTool,
+    FileWriterTool,
     ListDirectoryTool,
     CreateDirectoryTool,
     DeleteFileTool,
@@ -45,6 +46,7 @@ __all__ = [
     # File tools
     "ReadFileTool",
     "WriteFileTool", 
+    "FileWriterTool",
     "ListDirectoryTool",
     "CreateDirectoryTool",
     "DeleteFileTool",

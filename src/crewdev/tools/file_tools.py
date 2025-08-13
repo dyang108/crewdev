@@ -81,6 +81,16 @@ class WriteFileTool(BaseTool):
             return f"Error writing file '{file_path}': {str(e)}"
 
 
+class FileWriterTool(WriteFileTool):
+    """Alias of WriteFileTool with a friendlier name for prompts/UX.
+
+    Exposes the exact same behavior and args schema, but under a different
+    tool name to support flows expecting a `FileWriterTool` specifically.
+    """
+    name: str = "file_writer"
+    description: str = "Write content to a file on the local filesystem (alias of write_file)."
+
+
 class ListDirectoryTool(BaseTool):
     name: str = "list_directory"
     description: str = "List the contents of a directory on the local filesystem"
