@@ -26,6 +26,20 @@ def setup_logging():
         )
         
         print("📝 Logging configured - thought process will be saved to 'crew_thought_process.log'")
+
+        # Reduce noise from verbose libraries
+        for noisy_logger in [
+            'httpx',
+            'urllib3',
+            'chromadb',
+            'chromadb.telemetry',
+            'chromadb.config',
+            'chromadb.api.segment'
+        ]:
+            try:
+                logging.getLogger(noisy_logger).setLevel(logging.WARNING)
+            except Exception:
+                pass
         
     except Exception as e:
         print(f"⚠️ Warning: Could not load logging config: {e}")
@@ -46,33 +60,42 @@ def run():
     """
     setup_logging()
     
-    # Prompt user for project details
+    import os
+    # Optionally skip user prompts for debug runs
+    skip_inputs = os.environ.get("CREWDEV_SKIP_INPUTS", "0").strip() in ("1", "true", "True")
     print("🚀 Welcome to the Software Engineering Team!")
     print("=" * 60)
-    
-    # Get project name
-    project_name = input("📋 What project would you like to build? (e.g., 'E-commerce Platform', 'Task Management App', 'Social Media App'): ").strip()
-    if not project_name:
-        project_name = "Custom Software Project"
-    
-    # Get additional project context
-    print("\n💡 Tell us more about your project:")
-    project_description = input("📝 Project description (optional): ").strip()
-    
-    # Get target users
-    target_users = input("👥 Who are the target users? (e.g., 'busy professionals', 'students', 'small businesses'): ").strip()
-    if not target_users:
-        target_users = "general users"
-    
-    # Get key features
-    key_features = input("✨ What are the key features you want? (e.g., 'user authentication, real-time chat, payment processing'): ").strip()
-    if not key_features:
-        key_features = "standard features"
-    
-    # Get technology preferences
-    tech_preferences = input("🔧 Any technology preferences? (e.g., 'React frontend, Python backend, AWS hosting'): ").strip()
-    if not tech_preferences:
-        tech_preferences = "modern best practices"
+
+    if skip_inputs:
+        project_name = os.environ.get("CREWDEV_PROJECT_NAME", "Debug Project")
+        project_description = os.environ.get("CREWDEV_PROJECT_DESC", "")
+        target_users = os.environ.get("CREWDEV_TARGET_USERS", "general users")
+        key_features = os.environ.get("CREWDEV_KEY_FEATURES", "standard features")
+        tech_preferences = os.environ.get("CREWDEV_TECH_PREFS", "modern best practices")
+    else:
+        # Get project name
+        project_name = input("📋 What project would you like to build? (e.g., 'E-commerce Platform', 'Task Management App', 'Social Media App'): ").strip()
+        if not project_name:
+            project_name = "Custom Software Project"
+        
+        # Get additional project context
+        print("\n💡 Tell us more about your project:")
+        project_description = input("📝 Project description (optional): ").strip()
+        
+        # Get target users
+        target_users = input("👥 Who are the target users? (e.g., 'busy professionals', 'students', 'small businesses'): ").strip()
+        if not target_users:
+            target_users = "general users"
+        
+        # Get key features
+        key_features = input("✨ What are the key features you want? (e.g., 'user authentication, real-time chat, payment processing'): ").strip()
+        if not key_features:
+            key_features = "standard features"
+        
+        # Get technology preferences
+        tech_preferences = input("🔧 Any technology preferences? (e.g., 'React frontend, Python backend, AWS hosting'): ").strip()
+        if not tech_preferences:
+            tech_preferences = "modern best practices"
     
     # Build inputs dictionary
     inputs = {
@@ -95,17 +118,58 @@ def run():
     print("=" * 60)
     
     # Confirm with user
-    confirm = input("\n🤔 Ready to start building? (y/n): ").strip().lower()
-    if confirm not in ['y', 'yes', '']:
-        print("❌ Project cancelled. Goodbye!")
-        return None
+    if not skip_inputs:
+        confirm = input("\n🤔 Ready to start building? (y/n): ").strip().lower()
+        if confirm not in ['y', 'yes', '']:
+            print("❌ Project cancelled. Goodbye!")
+            return None
     
+    # Expose project name for pause prompts if enabled
+    try:
+        import os
+        os.environ["CREWDEV_PROJECT_NAME"] = project_name
+    except Exception:
+        pass
+
     print("\n🚀 Starting Software Engineering Team...")
     print("📝 Thought process will be logged to 'crew_thought_process.log'")
     print("=" * 60)
-    
+
+    # Build crew explicitly so we can bootstrap logging and optionally stop before agent run
+    team = SoftwareEngineeringTeam()
+    crew_obj = team.crew()
+
+    # Emit a pre-start marker for the first task so it shows up even if the LLM call blocks
     try:
-        result = SoftwareEngineeringTeam().crew().kickoff(inputs=inputs)
+        first_label = None
+        try:
+            # Preferred: use team task order label if available
+            first_label = getattr(team, "_task_order", [["First Task", None]])[0][0]
+        except Exception:
+            pass
+        if not first_label:
+            # Fallback: derive from first task description
+            first_task = getattr(crew_obj, "tasks", [None])[0]
+            if first_task and getattr(first_task, "description", None):
+                first_label = first_task.description.splitlines()[0][:100]
+            else:
+                first_label = "First Task"
+        print(f"▶️ Starting {first_label} …")
+        try:
+            logging.info(f"Starting {first_label}")
+        except Exception:
+            pass
+    except Exception:
+        pass
+
+    # Optional hard stop before the first agent executes, to verify logging end-to-end
+    stop_before = os.environ.get("CREWDEV_STOP_BEFORE_AGENT", "0").strip() in ("1", "true", "True")
+    if stop_before:
+        print("(debug) Stopping before agent execution as requested by CREWDEV_STOP_BEFORE_AGENT.")
+        return None
+
+    try:
+        result = crew_obj.kickoff(inputs=inputs)
         print("=" * 60)
         print("✅ Team work completed successfully!")
         print("📄 Check 'crew_thought_process.log' for detailed thought process")

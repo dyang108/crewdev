@@ -35,6 +35,10 @@ frontend_implementation_task:
     Implement the frontend components for {project_name} based on the technical architecture and current requirements.
     Focus on user experience, responsive design, and modern web standards.
     Ensure accessibility and performance optimization.
+    Use the available tools to create real files under the project directory.
+    First, create or ensure the project directory exists at 'projects/{project_name}'.
+    Then write all source files to 'projects/{project_name}/...'.
+    Do not paste full source in the report; instead, create files using tools and summarize paths created.
   expected_output: >
     Frontend implementation including:
     - React/TypeScript components
@@ -48,6 +52,10 @@ backend_implementation_task:
   description: >
     Implement the backend services and APIs for {project_name} based on the technical architecture and current requirements.
     Focus on performance, security, and scalability. Implement proper error handling and logging.
+    Use the available tools to create real files under the project directory.
+    First, create or ensure the project directory exists at 'projects/{project_name}'.
+    Then write all source files to 'projects/{project_name}/...'.
+    Do not paste full source in the report; instead, create files using tools and summarize paths created.
   expected_output: >
     Backend implementation including:
     - API endpoints and controllers
@@ -62,6 +70,10 @@ devops_setup_task:
   description: >
     Set up CI/CD pipelines, containerization, and deployment infrastructure for {project_name}.
     Implement monitoring, logging, and operational best practices.
+    Use the available tools to create real files under the project directory.
+    First, create or ensure the project directory exists at 'projects/{project_name}'.
+    Then write all configuration files to 'projects/{project_name}/...'.
+    Do not paste full source in the report; instead, create files using tools and summarize paths created.
   expected_output: >
     DevOps implementation including:
     - Docker containerization
@@ -106,6 +118,7 @@ final_integration_task:
   description: >
     Integrate all components and perform end-to-end testing. Ensure the system works
     as a cohesive unit and meets all requirements from the market research.
+    Verify that all referenced files exist under 'projects/{project_name}' and update documentation accordingly.
   expected_output: >
     Integration report including:
     - End-to-end testing results
