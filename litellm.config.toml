@@ -7,7 +7,7 @@ provider = "ollama"
 [model.mistral]
 provider = "ollama"
 
-[model."gpt-oss:20b"]
+[model."mistral:latest"]
 provider = "ollama"
 
 [model.llama3]
@@ -20,5 +20,5 @@ provider = "ollama"
 provider = "ollama"
 
 # Alias with provider prefix, used by some parts of the app
-[model."ollama/gpt-oss:20b"]
+[model."ollama/mistral:latest"]
 provider = "ollama" 

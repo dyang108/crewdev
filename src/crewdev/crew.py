@@ -31,13 +31,13 @@ os.environ["LITELLM_PROVIDER"] = "ollama"
 os.environ["OPENAI_API_BASE"] = "http://localhost:11434/v1"
 os.environ["OPENAI_API_KEY"] = "ollama"  # Dummy key for Ollama
 # Remove OLLAMA_BASE_URL - CrewAI uses Langchain which expects OpenAI-style APIs
-os.environ["LLM_MODEL"] = "ollama/gpt-oss:20b"  # Using Mistral with ollama/ prefix
+os.environ["LLM_MODEL"] = "ollama/mistral:latest"  # Using Mistral with ollama/ prefix
 # Additional environment variables to ensure correct model usage
-os.environ["DEFAULT_MODEL"] = "ollama/gpt-oss:20b"
-os.environ["MODEL_NAME"] = "ollama/gpt-oss:20b"
+os.environ["DEFAULT_MODEL"] = "ollama/mistral:latest"
+os.environ["MODEL_NAME"] = "ollama/mistral:latest"
 
 gptoss = OllamaLLM(
-    model="ollama/gpt-oss:20b",
+    model="ollama/mistral:latest",
     url="http://localhost:11434",
     provider="ollama",
 )
@@ -380,7 +380,7 @@ class SoftwareEngineeringTeam():
 
         # Create Ollama LLM instance directly
         ollama_llm = OllamaLLM(
-            model="ollama/gpt-oss:20b",
+            model="ollama/mistral:latest",
             url="http://localhost:11434",
             verbose=True
         )
